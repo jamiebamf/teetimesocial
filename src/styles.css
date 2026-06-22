@@ -3271,3 +3271,237 @@ form label {
     padding: 18px;
   }
 }
+
+
+/* Commercial polish v1 */
+
+.pricing-preview-section,
+.pricing-page-section,
+.member-benefits-section,
+.event-builder-section,
+.coaching-pathway-section {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(168, 181, 107, 0.14), transparent 24%),
+    var(--background);
+}
+
+.pricing-preview-grid,
+.deposit-grid,
+.member-benefits-grid,
+.event-builder-grid,
+.coaching-pathway-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.pricing-preview-grid p,
+.deposit-grid p,
+.member-benefits-grid p,
+.event-builder-grid p,
+.coaching-pathway-grid p {
+  color: rgba(7, 31, 24, 0.72);
+  line-height: 1.75;
+  font-weight: 600;
+  max-width: 680px;
+}
+
+.mini-price-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.mini-price-grid div,
+.deposit-panel div,
+.member-benefits-list div,
+.event-builder-list div,
+.coaching-pathway-steps div {
+  background: var(--white);
+  border: 1px solid rgba(15, 53, 39, 0.08);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 18px 50px rgba(15, 53, 39, 0.08);
+}
+
+.mini-price-grid span,
+.deposit-panel span,
+.event-builder-list span {
+  display: block;
+  color: rgba(7, 31, 24, 0.58);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.mini-price-grid strong,
+.deposit-panel strong,
+.event-builder-list strong {
+  color: var(--nav);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.pricing-hero h1 {
+  max-width: 980px;
+}
+
+.pricing-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.pricing-card {
+  background: var(--white);
+  border: 1px solid rgba(15, 53, 39, 0.08);
+  border-radius: 30px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 24px 60px rgba(15, 53, 39, 0.09);
+}
+
+.featured-pricing-card {
+  border-color: rgba(168, 181, 107, 0.65);
+  box-shadow: 0 30px 80px rgba(168, 181, 107, 0.22);
+}
+
+.pricing-card-header span {
+  display: inline-flex;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(168, 181, 107, 0.18);
+  color: var(--nav);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+
+.pricing-card h3 {
+  color: var(--nav);
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+}
+
+.pricing-card-header strong {
+  color: var(--button);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.pricing-card p,
+.pricing-card li {
+  color: rgba(7, 31, 24, 0.72);
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+.pricing-card ul {
+  padding-left: 18px;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.pricing-card .button {
+  margin-top: auto;
+}
+
+.deposit-section {
+  background: var(--nav);
+  color: var(--white);
+}
+
+.deposit-section .eyebrow,
+.deposit-section h2 {
+  color: var(--white);
+}
+
+.deposit-section p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.deposit-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.deposit-panel div {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+
+.deposit-panel span {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.deposit-panel strong {
+  color: var(--white);
+}
+
+.member-benefits-list,
+.event-builder-list,
+.coaching-pathway-steps {
+  display: grid;
+  gap: 14px;
+}
+
+.member-benefits-list strong,
+.coaching-pathway-steps strong {
+  display: block;
+  color: var(--nav);
+  font-size: 1.08rem;
+  margin-bottom: 8px;
+}
+
+.member-benefits-list span,
+.coaching-pathway-steps span {
+  color: rgba(7, 31, 24, 0.72);
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.event-builder-list div {
+  display: grid;
+  gap: 6px;
+}
+
+@media (max-width: 1100px) {
+  .pricing-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .pricing-preview-grid,
+  .deposit-grid,
+  .member-benefits-grid,
+  .event-builder-grid,
+  .coaching-pathway-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-price-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .pricing-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-card {
+    padding: 24px;
+  }
+}

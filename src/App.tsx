@@ -188,6 +188,7 @@ function LocationAndFooter() {
             <a href="/cookies">Cookies</a>
             <a href="/contact">Contact</a>
             <a href="/faq">FAQ</a>
+            <a href="/pricing">Pricing</a>
           </div>
 
           <p>© {new Date().getFullYear()} Tee Time Social. All rights reserved.</p>
@@ -237,6 +238,10 @@ function App() {
     return <FAQPage />;
   }
 
+  if (path === "/pricing") {
+    return <PricingPage />;
+  }
+
   if (path === "/tts-admin") {
     return <ProtectedAdminPage />;
   }
@@ -274,6 +279,7 @@ function Navigation() {
           <a href="/coaching" onClick={closeMenu}>Coaching</a>
           <a href="/book-simulator" onClick={closeMenu}>Book Simulator</a>
           <a href="/memberships" onClick={closeMenu}>Memberships</a>
+          <a href="/pricing" onClick={closeMenu}>Pricing</a>
           <a href="/events" onClick={closeMenu}>Events</a>
           <a href="/contact" onClick={closeMenu}>Contact</a>
           <a href="/faq" onClick={closeMenu}>FAQ</a>
@@ -523,6 +529,31 @@ function HomePage() {
             <div><strong>Next</strong><span>Founding memberships, event packages and coaching updates</span></div>
             <div><strong>Pre-open</strong><span>Early booking access and launch offers</span></div>
             <div><strong>Autumn 2026</strong><span>Venue opening in Barnsley</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section pricing-preview-section">
+        <div className="container pricing-preview-grid">
+          <div>
+            <p className="eyebrow">Pricing & packages</p>
+            <h2>Simple options for play, practice and groups.</h2>
+            <p>
+              Final pricing will be confirmed closer to opening. The current site now
+              gives visitors a clear guide to the types of bookings, memberships and
+              event packages Tee Time Social will offer.
+            </p>
+            <div className="hero-actions">
+              <a href="/pricing" className="button button-primary">View Pricing Guide</a>
+              <a href="/memberships" className="button button-secondary">Memberships</a>
+            </div>
+          </div>
+
+          <div className="mini-price-grid">
+            <div><span>Simulator Play</span><strong>30 / 60 / 90 mins</strong></div>
+            <div><span>Memberships</span><strong>Waiting list open</strong></div>
+            <div><span>Events</span><strong>Packages TBC</strong></div>
+            <div><span>Coaching</span><strong>GDR Max studio</strong></div>
           </div>
         </div>
       </section>
@@ -1047,6 +1078,26 @@ function CoachingPage() {
         </div>
       </section>
 
+      <section className="section coaching-pathway-section">
+        <div className="container coaching-pathway-grid">
+          <div>
+            <p className="eyebrow">Coaching pathways</p>
+            <h2>From first swing to lower scores.</h2>
+            <p>
+              The coaching page now explains the likely routes customers can register
+              interest in before launch.
+            </p>
+          </div>
+
+          <div className="coaching-pathway-steps">
+            <div><strong>Beginner sessions</strong><span>Simple, welcoming indoor golf introductions.</span></div>
+            <div><strong>Game improvement</strong><span>Practice plans and lessons for regular players.</span></div>
+            <div><strong>Junior coaching</strong><span>Accompanied junior sessions and family-friendly activity.</span></div>
+            <div><strong>Performance practice</strong><span>GDR Max feedback for distance, consistency and technique.</span></div>
+          </div>
+        </div>
+      </section>
+
       <section id="coaching-enquiry" className="section register-section">
         <div className="container register-grid">
           <div>
@@ -1240,6 +1291,26 @@ function EventsPage() {
         </div>
       </section>
 
+      <section className="section event-builder-section">
+        <div className="container event-builder-grid">
+          <div>
+            <p className="eyebrow">Package builder</p>
+            <h2>Tell us the type of event and we will shape the package.</h2>
+            <p>
+              Capture the important details now: group size, preferred date, event type
+              and any requirements for golf, food, drink, live sport or private space.
+            </p>
+          </div>
+
+          <div className="event-builder-list">
+            <div><span>Birthdays</span><strong>Celebrations, groups and social golf</strong></div>
+            <div><span>Corporate</span><strong>Team socials, clients and staff nights</strong></div>
+            <div><span>Sport nights</span><strong>Live sport, drinks and simulator competitions</strong></div>
+            <div><span>Societies</span><strong>Golf groups, leagues and competitions</strong></div>
+          </div>
+        </div>
+      </section>
+
       <section id="event-enquiry" className="section register-section">
         <div className="container register-grid">
           <div>
@@ -1402,6 +1473,26 @@ function MembershipsPage() {
               <h3>Social & Events</h3>
               <p>Future membership concept for social events, live sport, private hire offers and venue experiences.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section member-benefits-section">
+        <div className="container member-benefits-grid">
+          <div>
+            <p className="eyebrow">Member concepts</p>
+            <h2>Designed for regular golfers, families and local businesses.</h2>
+            <p>
+              Memberships are not finalised yet, but the waiting list now separates
+              demand by guest type so Tee Time Social can shape the right launch offer.
+            </p>
+          </div>
+
+          <div className="member-benefits-list">
+            <div><strong>Priority booking</strong><span>Potential early access to peak simulator slots.</span></div>
+            <div><strong>League access</strong><span>Future indoor golf league and competition pathways.</span></div>
+            <div><strong>Family & junior options</strong><span>Interest capture for accompanied juniors and family practice.</span></div>
+            <div><strong>Corporate access</strong><span>Useful for staff socials, client nights and recurring group bookings.</span></div>
           </div>
         </div>
       </section>
@@ -1681,6 +1772,142 @@ function ContactPage() {
   );
 }
 
+
+
+
+function PricingPage() {
+  return (
+    <main>
+      <Navigation />
+
+      <section className="page-hero pricing-hero">
+        <div className="container page-hero-grid">
+          <div>
+            <p className="eyebrow">Pricing guide</p>
+            <h1>Booking options, memberships and event packages.</h1>
+            <p>
+              Final prices will be confirmed closer to opening. This guide shows the
+              planned ways guests will be able to play, practise, join and host events
+              at Tee Time Social.
+            </p>
+
+            <div className="hero-actions">
+              <a href="/book-simulator" className="button button-primary">Book Simulator</a>
+              <a href="/events" className="button button-secondary">Event Enquiry</a>
+            </div>
+          </div>
+
+          <div className="booking-summary-card">
+            <span>Launch note</span>
+            <strong>Prices TBC</strong>
+            <p>Join the launch list for early booking access, introductory offers and package announcements.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section pricing-page-section">
+        <div className="container">
+          <div className="section-heading section-heading-wide">
+            <p className="eyebrow">Ways to book</p>
+            <h2>Clear routes for every type of guest.</h2>
+            <p>
+              Tee Time Social will support casual simulator bookings, regular practice,
+              coaching, memberships, private hire and larger social events.
+            </p>
+          </div>
+
+          <div className="pricing-card-grid">
+            <article className="pricing-card featured-pricing-card">
+              <div className="pricing-card-header">
+                <span>Most popular</span>
+                <h3>Simulator Booking</h3>
+                <strong>30 / 60 / 90 mins</strong>
+              </div>
+              <p>For casual golf, friends, date nights, practice sessions and small groups.</p>
+              <ul>
+                <li>Up to six players per bay</li>
+                <li>Choice of simulator bay</li>
+                <li>Club hire request option</li>
+                <li>Deposit estimate currently £10 per player</li>
+              </ul>
+              <a href="/book-simulator" className="button button-primary">Book Simulator</a>
+            </article>
+
+            <article className="pricing-card">
+              <div className="pricing-card-header">
+                <span>Regular players</span>
+                <h3>Memberships</h3>
+                <strong>Waiting list open</strong>
+              </div>
+              <p>For golfers and social guests who want early access, launch offers and future member benefits.</p>
+              <ul>
+                <li>Founding member interest</li>
+                <li>Golf & practice interest</li>
+                <li>Family / junior access interest</li>
+                <li>Corporate membership interest</li>
+              </ul>
+              <a href="/memberships" className="button button-secondary">Join Waiting List</a>
+            </article>
+
+            <article className="pricing-card">
+              <div className="pricing-card-header">
+                <span>Groups</span>
+                <h3>Events & Private Hire</h3>
+                <strong>Packages TBC</strong>
+              </div>
+              <p>For birthdays, corporate socials, golf societies, junior celebrations and live sport nights.</p>
+              <ul>
+                <li>Multi-bay event options</li>
+                <li>Food and drink packages planned</li>
+                <li>Live sport and social space</li>
+                <li>Central Barnsley venue</li>
+              </ul>
+              <a href="/events" className="button button-secondary">Make Enquiry</a>
+            </article>
+
+            <article className="pricing-card">
+              <div className="pricing-card-header">
+                <span>Improve</span>
+                <h3>Coaching & GDR Max</h3>
+                <strong>Practice studio</strong>
+              </div>
+              <p>For lessons, practice plans, junior coaching and data-led improvement sessions.</p>
+              <ul>
+                <li>Golfzon GDR Max studio</li>
+                <li>One-to-one lesson interest</li>
+                <li>Junior coaching interest</li>
+                <li>Pro shop and fitting pathway</li>
+              </ul>
+              <a href="/coaching" className="button button-secondary">Coaching Interest</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section deposit-section">
+        <div className="container deposit-grid">
+          <div>
+            <p className="eyebrow">Booking deposits</p>
+            <h2>Built ready for payments later.</h2>
+            <p>
+              The booking system currently records booking requests and deposit estimates.
+              Stripe/payment collection can be added later without rebuilding the whole
+              customer journey.
+            </p>
+          </div>
+
+          <div className="deposit-panel">
+            <div><span>Deposit estimate</span><strong>£10 per player</strong></div>
+            <div><span>Maximum players</span><strong>6 per bay</strong></div>
+            <div><span>Current status</span><strong>Request only</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <LocationAndFooter />
+    </main>
+  );
+}
 
 
 function FAQPage() {
