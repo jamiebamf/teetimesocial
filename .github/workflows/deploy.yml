@@ -41,7 +41,7 @@ jobs:
       - name: Add SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}" > ~/.ssh/hostinger_key
+          printf '%s\n' "${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}" > ~/.ssh/hostinger_key
           chmod 600 ~/.ssh/hostinger_key
           ssh-keyscan -p "${{ secrets.HOSTINGER_SSH_PORT }}" "${{ secrets.HOSTINGER_SSH_HOST }}" >> ~/.ssh/known_hosts
 
