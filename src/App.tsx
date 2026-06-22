@@ -187,6 +187,7 @@ function LocationAndFooter() {
             <a href="/terms">Terms</a>
             <a href="/cookies">Cookies</a>
             <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
           </div>
 
           <p>© {new Date().getFullYear()} Tee Time Social. All rights reserved.</p>
@@ -232,6 +233,10 @@ function App() {
     return <ContactPage />;
   }
 
+  if (path === "/faq") {
+    return <FAQPage />;
+  }
+
   if (path === "/tts-admin") {
     return <ProtectedAdminPage />;
   }
@@ -271,6 +276,7 @@ function Navigation() {
           <a href="/memberships" onClick={closeMenu}>Memberships</a>
           <a href="/events" onClick={closeMenu}>Events</a>
           <a href="/contact" onClick={closeMenu}>Contact</a>
+          <a href="/faq" onClick={closeMenu}>FAQ</a>
           <a href="/#register" className="nav-button" onClick={closeMenu}>Register</a>
         </div>
       </div>
@@ -458,6 +464,89 @@ function HomePage() {
             <div><h3>Indoor Golf</h3><p>Simulator bookings for casual play, practice, groups and leagues.</p></div>
             <div><h3>Pro Shop & Coaching</h3><p>Lessons, coaching packages, memberships and professional shop offers.</p></div>
             <div><h3>Live Sport & Social</h3><p>Food, drink, big-screen sport, social events and private hire.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section planning-section">
+        <div className="container">
+          <div className="section-heading section-heading-wide">
+            <p className="eyebrow">Plan your visit</p>
+            <h2>Built for golfers, groups and nights out.</h2>
+            <p>
+              Whether guests are serious golfers, total beginners or just coming for food,
+              drink and live sport, Tee Time Social is designed to feel easy to book and
+              simple to enjoy.
+            </p>
+          </div>
+
+          <div className="planning-grid">
+            <article className="planning-card">
+              <span>01</span>
+              <h3>Choose your session</h3>
+              <p>Pick 30, 60 or 90 minutes and bring up to six players per simulator bay.</p>
+            </article>
+
+            <article className="planning-card">
+              <span>02</span>
+              <h3>Bring clubs or request hire</h3>
+              <p>Players can bring their own clubs or request hire sets when making a booking.</p>
+            </article>
+
+            <article className="planning-card">
+              <span>03</span>
+              <h3>Play, practise or socialise</h3>
+              <p>Use the bays for casual games, data-led practice, coaching, leagues or group events.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section launch-section">
+        <div className="container launch-grid">
+          <div>
+            <p className="eyebrow">Opening roadmap</p>
+            <h2>What happens before launch.</h2>
+            <p>
+              Tee Time Social is opening in Autumn 2026. The launch list gives us a way to
+              contact early supporters first as bookings, memberships, event packages and
+              coaching become available.
+            </p>
+            <div className="hero-actions">
+              <a href="#register" className="button button-primary">Join Launch List</a>
+              <a href="/faq" className="button button-secondary">Read FAQs</a>
+            </div>
+          </div>
+
+          <div className="timeline-card">
+            <div><strong>Now</strong><span>Register interest and join the launch list</span></div>
+            <div><strong>Next</strong><span>Founding memberships, event packages and coaching updates</span></div>
+            <div><strong>Pre-open</strong><span>Early booking access and launch offers</span></div>
+            <div><strong>Autumn 2026</strong><span>Venue opening in Barnsley</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section faq-preview-section">
+        <div className="container faq-preview-grid">
+          <div>
+            <p className="eyebrow">Quick answers</p>
+            <h2>Before you book or enquire.</h2>
+          </div>
+
+          <div className="faq-preview-list">
+            <details open>
+              <summary>Can non-golfers visit Tee Time Social?</summary>
+              <p>Yes. The venue is designed for social groups, beginners, live sport, food, drink and events as well as golfers.</p>
+            </details>
+            <details>
+              <summary>How many people can play in one bay?</summary>
+              <p>Each simulator booking supports up to six players per bay.</p>
+            </details>
+            <details>
+              <summary>Are under 18s allowed?</summary>
+              <p>Yes, but anyone under 18 must be accompanied by an adult.</p>
+            </details>
           </div>
         </div>
       </section>
@@ -1584,6 +1673,110 @@ function ContactPage() {
             <p>Tee Time Social, Regent St, Barnsley S70 2HJ. Phone number and opening hours to be confirmed.</p>
             <a href="/events" className="button button-secondary">Events Enquiry</a>
           </article>
+        </div>
+      </section>
+
+      <LocationAndFooter />
+    </main>
+  );
+}
+
+
+
+function FAQPage() {
+  return (
+    <main>
+      <Navigation />
+
+      <section className="page-hero faq-hero">
+        <div className="container page-hero-grid">
+          <div>
+            <p className="eyebrow">FAQs</p>
+            <h1>Frequently asked questions.</h1>
+            <p>
+              Clear answers for simulator bookings, memberships, coaching, events,
+              under 18s, club hire and the Tee Time Social launch.
+            </p>
+          </div>
+
+          <div className="booking-summary-card">
+            <span>Opening</span>
+            <strong>Autumn 2026</strong>
+            <p>Register interest now for early access, launch offers and booking updates.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section faq-page-section">
+        <div className="container faq-page-grid">
+          <aside className="faq-sidebar">
+            <p className="eyebrow">Need help?</p>
+            <h2>Still got a question?</h2>
+            <p>Email the team and we&apos;ll come back to you.</p>
+            <a href="mailto:info@teetimesocial.co.uk" className="button button-primary">Email Us</a>
+          </aside>
+
+          <div className="faq-accordion">
+            <details open>
+              <summary>When is Tee Time Social opening?</summary>
+              <p>Tee Time Social is planned to open in Autumn 2026 in Barnsley.</p>
+            </details>
+
+            <details>
+              <summary>Where is Tee Time Social?</summary>
+              <p>The venue address is Tee Time Social, Regent Street, Barnsley S70 2HJ.</p>
+            </details>
+
+            <details>
+              <summary>What simulator technology will you have?</summary>
+              <p>The venue is planned to feature four Golfzon TwoVision simulator bays and one Golfzon GDR Max studio for coaching and practice.</p>
+            </details>
+
+            <details>
+              <summary>How long can I book for?</summary>
+              <p>Current booking options are 30, 60 or 90 minutes.</p>
+            </details>
+
+            <details>
+              <summary>How many people can play in one simulator bay?</summary>
+              <p>Each booking supports up to six players per simulator bay.</p>
+            </details>
+
+            <details>
+              <summary>Can beginners and non-golfers come?</summary>
+              <p>Yes. Tee Time Social is for golfers, beginners and social groups. You do not need to be an experienced golfer to visit.</p>
+            </details>
+
+            <details>
+              <summary>Will club hire be available?</summary>
+              <p>Players can bring their own clubs, and club hire can be requested when submitting a booking request.</p>
+            </details>
+
+            <details>
+              <summary>Are under 18s allowed?</summary>
+              <p>Yes, under 18s are welcome but must be accompanied by an adult.</p>
+            </details>
+
+            <details>
+              <summary>Can I book private hire or events?</summary>
+              <p>Yes. Private hire enquiries are open for birthdays, corporate events, golf societies, live sport bookings, celebrations and group nights out.</p>
+            </details>
+
+            <details>
+              <summary>Are memberships available?</summary>
+              <p>The membership waiting list is open. Register your interest to receive founding member updates and early information.</p>
+            </details>
+
+            <details>
+              <summary>Will coaching be available?</summary>
+              <p>Yes. Coaching and practice enquiries are open, with the Golfzon GDR Max studio planned for data-led practice and player improvement.</p>
+            </details>
+
+            <details>
+              <summary>Do online bookings take payment now?</summary>
+              <p>Not yet. The current booking system records booking requests and deposit estimates. Payment and final confirmation can be added later.</p>
+            </details>
+          </div>
         </div>
       </section>
 

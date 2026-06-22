@@ -3024,3 +3024,250 @@ form label {
     margin-bottom: 24px;
   }
 }
+
+
+/* Website content expansion v1 */
+
+.section-heading-wide {
+  max-width: 980px;
+}
+
+.section-heading-wide p {
+  max-width: 760px;
+  color: rgba(7, 31, 24, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+.planning-section {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(168, 181, 107, 0.16), transparent 24%),
+    var(--background);
+}
+
+.planning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 34px;
+}
+
+.planning-card {
+  background: var(--white);
+  border: 1px solid rgba(15, 53, 39, 0.08);
+  border-radius: 30px;
+  padding: 32px;
+  box-shadow: 0 22px 60px rgba(15, 53, 39, 0.09);
+}
+
+.planning-card span {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+  background: var(--button);
+  color: var(--nav);
+  font-weight: 900;
+  margin-bottom: 22px;
+}
+
+.planning-card h3 {
+  color: var(--nav);
+  font-size: 1.4rem;
+  letter-spacing: -0.035em;
+  margin-bottom: 12px;
+}
+
+.planning-card p {
+  color: rgba(7, 31, 24, 0.72);
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.launch-section {
+  background: var(--banner);
+  color: var(--white);
+  overflow: hidden;
+}
+
+.launch-section .eyebrow,
+.launch-section h2,
+.launch-section p {
+  color: var(--white);
+}
+
+.launch-section p {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.75;
+  font-weight: 600;
+  max-width: 680px;
+}
+
+.launch-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.timeline-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 32px;
+  padding: 18px;
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.18);
+}
+
+.timeline-card div {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 18px;
+  padding: 20px;
+  border-radius: 22px;
+}
+
+.timeline-card div + div {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.timeline-card strong {
+  color: var(--button);
+  font-weight: 900;
+}
+
+.timeline-card span {
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.faq-preview-section,
+.faq-page-section {
+  background:
+    radial-gradient(circle at 80% 10%, rgba(168, 181, 107, 0.14), transparent 25%),
+    #fbfaf4;
+}
+
+.faq-preview-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.faq-preview-list,
+.faq-accordion {
+  display: grid;
+  gap: 14px;
+}
+
+.faq-preview-list details,
+.faq-accordion details {
+  background: var(--white);
+  border: 1px solid rgba(15, 53, 39, 0.08);
+  border-radius: 22px;
+  padding: 20px 22px;
+  box-shadow: 0 16px 44px rgba(15, 53, 39, 0.07);
+}
+
+.faq-preview-list summary,
+.faq-accordion summary {
+  color: var(--nav);
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  list-style: none;
+}
+
+.faq-preview-list summary::-webkit-details-marker,
+.faq-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-preview-list summary::after,
+.faq-accordion summary::after {
+  content: "+";
+  float: right;
+  color: var(--button);
+  font-weight: 900;
+}
+
+.faq-preview-list details[open] summary::after,
+.faq-accordion details[open] summary::after {
+  content: "−";
+}
+
+.faq-preview-list p,
+.faq-accordion p {
+  color: rgba(7, 31, 24, 0.72);
+  line-height: 1.7;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.faq-hero h1 {
+  max-width: 900px;
+}
+
+.faq-page-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.faq-sidebar {
+  position: sticky;
+  top: 110px;
+  background: var(--nav);
+  color: var(--white);
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow: 0 26px 70px rgba(15, 53, 39, 0.18);
+}
+
+.faq-sidebar .eyebrow,
+.faq-sidebar h2 {
+  color: var(--white);
+}
+
+.faq-sidebar p {
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.7;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+@media (max-width: 980px) {
+  .planning-grid,
+  .launch-grid,
+  .faq-preview-grid,
+  .faq-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-sidebar {
+    position: static;
+  }
+
+  .timeline-card div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 700px) {
+  .planning-card,
+  .faq-sidebar {
+    padding: 24px;
+  }
+
+  .faq-preview-list details,
+  .faq-accordion details {
+    padding: 18px;
+  }
+}
