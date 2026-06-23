@@ -658,7 +658,7 @@ function Navigation() {
 
   return (
     <>
-      <nav className="navbar navbar-polished">
+      <nav className={`navbar navbar-polished ${menuOpen ? "mobile-nav-active" : ""}`}>
         <div className="container navbar-inner">
           <a href="/" className="brand" onClick={closeMenu}>
             <span className="brand-mark">TTS</span>
