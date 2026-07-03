@@ -15,8 +15,8 @@ const SITE_URL = "https://teetimesocial.co.uk";
 
 const routeMeta: Record<string, { title: string; description: string; breadcrumb: string }> = {
   "/": {
-    title: "Tee Time Social | Indoor Golf, Events & Live Sport in Barnsley",
-    description: "Tee Time Social is Barnsley's premium indoor golf and social venue opening Autumn 2026, with Golfzon simulators, coaching, live sport, events and memberships.",
+    title: "Tee Time Social | Coming Soon to Barnsley",
+    description: "Tee Time Social is coming soon to Barnsley: a social bar with golf simulator hire, live sport, food, drinks and space for parties and group bookings.",
     breadcrumb: "Home"
   },
   "/book-simulator": {
@@ -214,14 +214,12 @@ function Breadcrumbs({ current }: { current: string }) {
 
 
 const interests = [
-  "Simulator Bookings",
-  "Memberships",
-  "Lessons & Coaching",
-  "Golf Leagues",
-  "Events",
-  "Private Hire",
-  "Giveaways",
-  "Professional Shop Offers"
+  "Golf simulator hire",
+  "Live sport",
+  "Food and drink",
+  "Parties and group bookings",
+  "Corporate or work socials",
+  "Opening offers"
 ];
 
 const simulators = [
@@ -445,195 +443,11 @@ function App() {
   const path = window.location.pathname;
 
   const renderPage = () => {
-    if (path === "/book-simulator") {
-      return <BookSimulatorPage />;
-    }
-
-  if (path === "/memberships") {
-    return <MembershipsPage />;
-  }
-
-  if (path === "/events") {
-    return <EventsPage />;
-  }
-
-  if (path === "/coaching") {
-    return <CoachingPage />;
-  }
-
-  if (path === "/privacy") {
-    return <PrivacyPage />;
-  }
-
-  if (path === "/terms") {
-    return <TermsPage />;
-  }
-
-  if (path === "/cookies") {
-    return <CookiesPage />;
-  }
-
-  if (path === "/contact") {
-    return <ContactPage />;
-  }
-
-  if (path === "/faq") {
-    return <FAQPage />;
-  }
-
-  if (path === "/pricing") {
-    return <PricingPage />;
-  }
-
-  if (path === "/leagues") {
-    return <LeaguesPage />;
-  }
-
-  if (path === "/corporate") {
-    return <CorporatePage />;
-  }
-
-  if (path === "/family-juniors") {
-    return <FamilyJuniorsPage />;
-  }
-
-  if (path === "/venue") {
-    return <VenuePage />;
-  }
-
-  if (path === "/food-drink") {
-    return <FoodDrinkPage />;
-  }
-
-  if (path === "/launch") {
-    return <LaunchPage />;
-  }
-
-  if (path === "/parties") {
-    return <PartiesPage />;
-  }
-
-  if (path === "/golf-societies") {
-    return <GolfSocietiesPage />;
-  }
-
-  if (path === "/date-night") {
-    return <DateNightPage />;
-  }
-
-  if (path === "/christmas-parties") {
-    return <ChristmasPartiesPage />;
-  }
-
-  if (path === "/guides") {
-    return <GuidesPage />;
-  }
-
-  if (path === "/what-is-golfzon") {
-    return <WhatIsGolfzonPage />;
-  }
-
-  if (path === "/gift-vouchers") {
-    return <GiftVouchersPage />;
-  }
-
-  if (path === "/live-sport") {
-    return <LiveSportPage />;
-  }
-
-  if (path === "/venue-hire-guide") {
-    return <VenueHireGuidePage />;
-  }
-
-  if (path === "/barnsley-indoor-golf") {
-    return <BarnsleyIndoorGolfPage />;
-  }
-
-  if (path === "/plan-your-visit") {
-    return <PlanYourVisitPage />;
-  }
-
-  if (path === "/house-rules") {
-    return <HouseRulesPage />;
-  }
-
-  if (path === "/accessibility") {
-    return <AccessibilityPage />;
-  }
-
-  if (path === "/careers") {
-    return <CareersPage />;
-  }
-
-  if (path === "/partnerships") {
-    return <PartnershipsPage />;
-  }
-
-  if (path === "/press") {
-    return <PressPage />;
-  }
-
-  if (path === "/packages") {
-    return <PackagesPage />;
-  }
-
-  if (path === "/founding-members") {
-    return <FoundingMembersPage />;
-  }
-
-  if (path === "/launch-offers") {
-    return <LaunchOffersPage />;
-  }
-
-  if (path === "/team-building") {
-    return <TeamBuildingPage />;
-  }
-
-  if (path === "/junior-golf") {
-    return <JuniorGolfPage />;
-  }
-
-  if (path === "/winter-golf") {
-    return <WinterGolfPage />;
-  }
-
-  if (path === "/how-booking-works") {
-    return <HowBookingWorksPage />;
-  }
-
-  if (path === "/simulator-guide") {
-    return <SimulatorGuidePage />;
-  }
-
-  if (path === "/club-hire") {
-    return <ClubHirePage />;
-  }
-
-  if (path === "/group-bookings") {
-    return <GroupBookingsPage />;
-  }
-
-  if (path === "/first-time-golfers") {
-    return <FirstTimeGolfersPage />;
-  }
-
-  if (path === "/booking-faq") {
-    return <BookingFAQPage />;
-  }
-
-    if (path === "/site-map") {
-      return <SiteMapPage />;
-    }
-
     if (path === "/tts-admin") {
       return <ProtectedAdminPage />;
     }
 
-    if (path === "/") {
-      return <HomePage />;
-    }
-
-    return <NotFoundPage />;
+    return <HomePage />;
   };
 
   return (
@@ -642,7 +456,6 @@ function App() {
     </PageShell>
   );
 }
-
 function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
@@ -680,8 +493,8 @@ function Navigation() {
           <div className={`nav-links nav-links-simplified nav-links-clean ${menuOpen ? "nav-links-open" : ""}`}>
             <a href="/" onClick={closeMenu}>Home</a>
 
-            <div className={`nav-group ${openGroup === "about" ? "nav-group-open" : ""}`} onMouseEnter={() => setOpenGroup("about")} onMouseLeave={() => setOpenGroup(null)}>
-              <button type="button" className="nav-group-button" onClick={() => toggleGroup("about")}>About</button>
+            <div className={`nav-group ${openGroup === "about" ? "nav-group-open" : ""}`}>
+              <button type="button" className="nav-group-button" aria-expanded={openGroup === "about"} onClick={() => toggleGroup("about")}>About</button>
               <div className="nav-dropdown">
                 <a href="/venue" onClick={closeMenu}>Venue</a>
                 <a href="/#simulators" onClick={closeMenu}>Simulators</a>
@@ -691,8 +504,8 @@ function Navigation() {
               </div>
             </div>
 
-            <div className={`nav-group ${openGroup === "events" ? "nav-group-open" : ""}`} onMouseEnter={() => setOpenGroup("events")} onMouseLeave={() => setOpenGroup(null)}>
-              <button type="button" className="nav-group-button" onClick={() => toggleGroup("events")}>Events</button>
+            <div className={`nav-group ${openGroup === "events" ? "nav-group-open" : ""}`}>
+              <button type="button" className="nav-group-button" aria-expanded={openGroup === "events"} onClick={() => toggleGroup("events")}>Events</button>
               <div className="nav-dropdown">
                 <a href="/leagues" onClick={closeMenu}>Leagues</a>
                 <a href="/venue-hire-guide" onClick={closeMenu}>Hire</a>
@@ -702,8 +515,8 @@ function Navigation() {
               </div>
             </div>
 
-            <div className={`nav-group ${openGroup === "more" ? "nav-group-open" : ""}`} onMouseEnter={() => setOpenGroup("more")} onMouseLeave={() => setOpenGroup(null)}>
-              <button type="button" className="nav-group-button" onClick={() => toggleGroup("more")}>More</button>
+            <div className={`nav-group ${openGroup === "more" ? "nav-group-open" : ""}`}>
+              <button type="button" className="nav-group-button" aria-expanded={openGroup === "more"} onClick={() => toggleGroup("more")}>More</button>
               <div className="nav-dropdown nav-dropdown-wide">
                 <a href="/packages" onClick={closeMenu}>Packages</a>
                 <a href="/memberships" onClick={closeMenu}>Memberships</a>
@@ -729,18 +542,6 @@ function HomePage() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [message, setMessage] = useState("");
   const [leadStatus, setLeadStatus] = useState("");
-
-  const [hireForm, setHireForm] = useState({
-    full_name: "",
-    email: "",
-    phone: "",
-    event_type: "",
-    preferred_date: "",
-    guest_count: "",
-    message: ""
-  });
-
-  const [hireStatus, setHireStatus] = useState("");
   const selectedCount = useMemo(() => selectedInterests.length, [selectedInterests]);
 
   const toggleInterest = (interest: string) => {
@@ -761,7 +562,7 @@ function HomePage() {
       phone,
       interests: selectedInterests,
       message,
-      source: "coming_soon_page"
+      source: "coming_soon_register_interest"
     });
 
     if (error) {
@@ -769,14 +570,14 @@ function HomePage() {
       return;
     }
 
-    await notifyAdmin("New website lead - Tee Time Social", {
-      type: "Website lead",
+    await notifyAdmin("New register your interest lead - Tee Time Social", {
+      type: "Register your interest",
       full_name: fullName,
       email,
       phone,
       interests: selectedInterests,
       message,
-      source: "coming_soon_page"
+      source: "coming_soon_register_interest"
     });
 
     setFullName("");
@@ -787,540 +588,138 @@ function HomePage() {
     setLeadStatus("Thank you. Your interest has been registered.");
   };
 
-  const updateHireForm = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setHireForm({ ...hireForm, [event.target.name]: event.target.value });
-  };
-
-  const submitPrivateHire = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setHireStatus("Submitting...");
-
-    const { error } = await supabase.from("private_hire_enquiries").insert({
-      ...hireForm,
-      source: "website_private_hire"
-    });
-
-    if (error) {
-      setHireStatus("Something went wrong. Please try again.");
-      return;
-    }
-
-    await notifyAdmin("New private hire enquiry - Tee Time Social", {
-      type: "Private hire enquiry",
-      ...hireForm,
-      source: "website_private_hire"
-    });
-
-    setHireForm({
-      full_name: "",
-      email: "",
-      phone: "",
-      event_type: "",
-      preferred_date: "",
-      guest_count: "",
-      message: ""
-    });
-
-    setHireStatus("Thank you. Your private hire enquiry has been sent.");
-  };
-
   return (
-    <main>
-      <Navigation />
+    <main className="coming-soon-page">
+      <section className="coming-soon-hero">
+        <div className="coming-soon-bg coming-soon-bg-one"></div>
+        <div className="coming-soon-bg coming-soon-bg-two"></div>
 
-      <section className="hero">
-        <div className="hero-glow hero-glow-one"></div>
-        <div className="hero-glow hero-glow-two"></div>
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <p className="eyebrow">Opening Autumn 2026 in Barnsley</p>
-            <h1>Yorkshire&apos;s home of indoor golf, live sport and social events.</h1>
-            <p className="hero-text">
-              Tee Time Social is Barnsley&apos;s premium indoor golf and social venue featuring Golfzon simulator technology, Pro Shop & Coaching, live sport, food, drink and events.
-            </p>
-            <div className="hero-actions">
-              <a href="/book-simulator" className="button button-primary">Book Simulator</a>
-              <a href="#private-hire" className="button button-secondary">Private Hire Enquiry</a>
-            </div>
-          </div>
-
-          <div className="hero-card">
-            <div className="status-pill"><span></span>Launch list open</div>
-            <h2>Be first in line.</h2>
-            <p>Get early access to simulator bookings, memberships, events, giveaways and launch offers.</p>
-            <a href="#register" className="button button-light">Join the list</a>
-          </div>
-        </div>
-      </section>
-
-      <section className="stats">
-        <div className="container stats-grid">
-          <div><strong>5</strong><span>Simulator bays</span></div>
-          <div><strong>4</strong><span>Golfzon TwoVision</span></div>
-          <div><strong>1</strong><span>Golfzon GDR Max</span></div>
-          <div><strong>2026</strong><span>Opening year</span></div>
-        </div>
-      </section>
-
-      <section className="section homepage-upgrade-section">
-        <div className="container upgrade-hero-grid">
-          <div>
-            <p className="eyebrow">Why Tee Time Social</p>
-            <h2>A full venue proposition, not just simulator bays.</h2>
-            <p>
-              Tee Time Social combines Golfzon technology with a premium social venue:
-              indoor golf, live sport, food, drink, memberships, coaching, leagues and
-              private hire under one Barnsley roof.
-            </p>
-          </div>
-
-          <div className="upgrade-proof-grid">
-            <div><strong>5</strong><span>Total simulator spaces</span></div>
-            <div><strong>6</strong><span>Players per bay</span></div>
-            <div><strong>30–90</strong><span>Minute booking options</span></div>
-            <div><strong>2026</strong><span>Autumn launch</span></div>
-          </div>
-        </div>
-
-        <div className="container venue-pillars-grid">
-          <article>
-            <span>Play</span>
-            <h3>Simulator golf</h3>
-            <p>Casual rounds, practice sessions, competitions and group bookings using Golfzon technology.</p>
-            <a href="/book-simulator">Book a bay</a>
-          </article>
-          <article>
-            <span>Improve</span>
-            <h3>Coaching & GDR Max</h3>
-            <p>A dedicated practice pathway for lessons, junior coaching and data-led improvement.</p>
-            <a href="/coaching">Coaching interest</a>
-          </article>
-          <article>
-            <span>Socialise</span>
-            <h3>Food, drink & live sport</h3>
-            <p>A venue built for nights out, live sport, private hire and shared social experiences.</p>
-            <a href="/food-drink">Explore venue</a>
-          </article>
-          <article>
-            <span>Belong</span>
-            <h3>Memberships & leagues</h3>
-            <p>Waiting lists are open for founding members, regular golfers, leagues and corporate groups.</p>
-            <a href="/memberships">Join waiting list</a>
-          </article>
-        </div>
-      </section>
-
-      <section className="section booking-journey-section">
-        <div className="container booking-journey-grid">
-          <div>
-            <p className="eyebrow">Customer journey</p>
-            <h2>Make it easy for visitors to choose what to do next.</h2>
-            <p>
-              The homepage now routes people into the right path: book a simulator,
-              join the launch list, ask about private hire, explore memberships or
-              register coaching interest.
-            </p>
-          </div>
-
-          <div className="journey-steps">
-            <div><strong>01</strong><span>Choose play, practice, event or membership.</span></div>
-            <div><strong>02</strong><span>Submit the right form with useful enquiry details.</span></div>
-            <div><strong>03</strong><span>Admin dashboard captures the lead, booking or enquiry.</span></div>
-            <div><strong>04</strong><span>Customer and venue receive email confirmation.</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="simulators" className="section section-dark">
-        <div className="container">
-          <div className="section-heading">
-            <p className="eyebrow">Simulator technology</p>
-            <h2>Premium indoor golf powered by Golfzon.</h2>
-          </div>
-
-          <div className="feature-grid">
-            <article className="feature-card">
-              <span className="feature-number">01</span>
-              <h3>4 x Golfzon TwoVision</h3>
-              <p>Premium simulator bays for social golf, practice, leagues and future online bookings.</p>
-            </article>
-
-            <article className="feature-card">
-              <span className="feature-number">02</span>
-              <h3>1 x Golfzon GDR Max</h3>
-              <p>Dedicated coaching and practice studio for lessons, swing data and player improvement.</p>
-            </article>
-
-            <article className="feature-card">
-              <span className="feature-number">03</span>
-              <h3>Club Hire</h3>
-              <p>Players can bring their own clubs, with hire sets planned for guests who need them.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience" className="section section-light">
-        <div className="container split">
-          <div>
-            <p className="eyebrow">The experience</p>
-            <h2>Golf, coaching, food, drink, live sport and events.</h2>
-          </div>
-
-          <div className="experience-list">
-            <div><h3>Indoor Golf</h3><p>Simulator bookings for casual play, practice, groups and leagues.</p></div>
-            <div><h3>Pro Shop & Coaching</h3><p>Lessons, coaching packages, memberships and professional shop offers.</p></div>
-            <div><h3>Live Sport & Social</h3><p>Food, drink, big-screen sport, social events and private hire.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section planning-section">
-        <div className="container">
-          <div className="section-heading section-heading-wide">
-            <p className="eyebrow">Plan your visit</p>
-            <h2>Built for golfers, groups and nights out.</h2>
-            <p>
-              Whether guests are serious golfers, total beginners or just coming for food,
-              drink and live sport, Tee Time Social is designed to feel easy to book and
-              simple to enjoy.
-            </p>
-          </div>
-
-          <div className="planning-grid">
-            <article className="planning-card">
-              <span>01</span>
-              <h3>Choose your session</h3>
-              <p>Pick 30, 60 or 90 minutes and bring up to six players per simulator bay.</p>
-            </article>
-
-            <article className="planning-card">
-              <span>02</span>
-              <h3>Bring clubs or request hire</h3>
-              <p>Players can bring their own clubs or request hire sets when making a booking.</p>
-            </article>
-
-            <article className="planning-card">
-              <span>03</span>
-              <h3>Play, practise or socialise</h3>
-              <p>Use the bays for casual games, data-led practice, coaching, leagues or group events.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="section launch-section">
-        <div className="container launch-grid">
-          <div>
-            <p className="eyebrow">Opening roadmap</p>
-            <h2>What happens before launch.</h2>
-            <p>
-              Tee Time Social is opening in Autumn 2026. The launch list gives us a way to
-              contact early supporters first as bookings, memberships, event packages and
-              coaching become available.
-            </p>
-            <div className="hero-actions">
-              <a href="#register" className="button button-primary">Join Launch List</a>
-              <a href="/faq" className="button button-secondary">Read FAQs</a>
-            </div>
-          </div>
-
-          <div className="timeline-card">
-            <div><strong>Now</strong><span>Register interest and join the launch list</span></div>
-            <div><strong>Next</strong><span>Founding memberships, event packages and coaching updates</span></div>
-            <div><strong>Pre-open</strong><span>Early booking access and launch offers</span></div>
-            <div><strong>Autumn 2026</strong><span>Venue opening in Barnsley</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section pricing-preview-section">
-        <div className="container pricing-preview-grid">
-          <div>
-            <p className="eyebrow">Pricing & packages</p>
-            <h2>Simple options for play, practice and groups.</h2>
-            <p>
-              Final pricing will be confirmed closer to opening. The current site now
-              gives visitors a clear guide to the types of bookings, memberships and
-              event packages Tee Time Social will offer.
-            </p>
-            <div className="hero-actions">
-              <a href="/pricing" className="button button-primary">View Pricing Guide</a>
-              <a href="/memberships" className="button button-secondary">Memberships</a>
-            </div>
-          </div>
-
-          <div className="mini-price-grid">
-            <div><span>Simulator Play</span><strong>30 / 60 / 90 mins</strong></div>
-            <div><span>Memberships</span><strong>Waiting list open</strong></div>
-            <div><span>Events</span><strong>Packages TBC</strong></div>
-            <div><span>Coaching</span><strong>GDR Max studio</strong></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section audience-section">
-        <div className="container">
-          <div className="section-heading section-heading-wide">
-            <p className="eyebrow">Who it is for</p>
-            <h2>Different reasons to visit, one premium social venue.</h2>
-            <p>
-              The site now speaks directly to the main customer groups we need before launch:
-              regular golfers, corporate groups, families, juniors, leagues and private hire.
-            </p>
-          </div>
-
-          <div className="audience-grid">
-            <a href="/leagues" className="audience-card">
-              <span>Golfers</span>
-              <h3>Leagues & competitions</h3>
-              <p>Register interest for future indoor golf leagues, society nights and closest-to-pin competitions.</p>
+        <div className="coming-soon-shell">
+          <header className="coming-soon-header">
+            <a href="/" className="coming-soon-brand" aria-label="Tee Time Social home">
+              <span>TTS</span>
+              <strong>Tee Time Social</strong>
             </a>
-
-            <a href="/corporate" className="audience-card">
-              <span>Businesses</span>
-              <h3>Corporate events</h3>
-              <p>Team socials, client entertainment, staff rewards and recurring company nights out.</p>
+            <a href="mailto:info@teetimesocial.co.uk" className="coming-soon-email">
+              info@teetimesocial.co.uk
             </a>
+          </header>
 
-            <a href="/family-juniors" className="audience-card">
-              <span>Families</span>
-              <h3>Juniors & family visits</h3>
-              <p>Family-friendly indoor golf for accompanied juniors, beginners and school holiday activity.</p>
-            </a>
+          <div className="coming-soon-grid">
+            <div className="coming-soon-copy">
+              <p className="coming-soon-kicker">Coming soon to Barnsley</p>
+              <h1>Golf simulators, live sport, drinks and good company.</h1>
+              <p className="coming-soon-intro">
+                Tee Time Social is a new social bar coming to Barnsley, with premium
+                indoor golf simulator bays to hire, live sport on screen, food, drinks
+                and space for groups, parties and work socials.
+              </p>
 
-            <a href="/events" className="audience-card">
-              <span>Groups</span>
-              <h3>Parties & private hire</h3>
-              <p>Birthdays, celebrations, live sport bookings and social golf packages in Barnsley.</p>
-            </a>
-          </div>
-        </div>
-      </section>
+              <div className="coming-soon-actions">
+                <a href="#register-interest" className="coming-soon-button coming-soon-button-primary">
+                  Register your interest
+                </a>
+                <a href="mailto:info@teetimesocial.co.uk" className="coming-soon-button coming-soon-button-secondary">
+                  Contact us
+                </a>
+              </div>
 
-      <section className="section occasion-finder-section">
-        <div className="container occasion-finder-grid">
-          <div>
-            <p className="eyebrow">Occasion finder</p>
-            <h2>Turn more visitors into the right type of enquiry.</h2>
-            <p>
-              Tee Time Social now has clearer landing pages for the most likely reasons
-              people will search, share and book: birthdays, golf societies, date nights,
-              Christmas parties and corporate events.
-            </p>
-          </div>
-
-          <div className="occasion-link-grid">
-            <a href="/parties"><span>Birthdays</span><strong>Parties & celebrations</strong></a>
-            <a href="/golf-societies"><span>Golf groups</span><strong>Societies & leagues</strong></a>
-            <a href="/date-night"><span>Couples</span><strong>Date nights</strong></a>
-            <a href="/christmas-parties"><span>Seasonal</span><strong>Christmas parties</strong></a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section marketing-engine-section">
-        <div className="container marketing-engine-grid">
-          <div>
-            <p className="eyebrow">Useful guides</p>
-            <h2>More reasons to find Tee Time Social before opening.</h2>
-            <p>
-              The site now has guide-style pages for technology, venue hire, live sport,
-              gift ideas and indoor golf in Barnsley, giving visitors more useful content
-              and more routes into enquiry forms.
-            </p>
-            <div className="hero-actions">
-              <a href="/guides" className="button button-primary">Explore Guides</a>
-              <a href="/#register" className="button button-secondary">Join Launch List</a>
-            </div>
-          </div>
-
-          <div className="guide-teaser-grid">
-            <a href="/what-is-golfzon"><span>Technology</span><strong>What is Golfzon?</strong></a>
-            <a href="/venue-hire-guide"><span>Events</span><strong>Venue hire guide</strong></a>
-            <a href="/gift-vouchers"><span>Gifts</span><strong>Gift voucher interest</strong></a>
-            <a href="/barnsley-indoor-golf"><span>Local</span><strong>Indoor golf in Barnsley</strong></a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section package-campaign-section">
-        <div className="container package-campaign-grid">
-          <div>
-            <p className="eyebrow">Packages & campaigns</p>
-            <h2>Clear offers for the biggest reasons people will book.</h2>
-            <p>
-              The website now has dedicated package and campaign routes for founding
-              members, launch offers, team building, junior golf and winter golf. This
-              gives the launch list more specific demand signals instead of one generic enquiry.
-            </p>
-            <div className="hero-actions">
-              <a href="/packages" className="button button-primary">View Packages</a>
-              <a href="/launch-offers" className="button button-secondary">Launch Offers</a>
-            </div>
-          </div>
-
-          <div className="campaign-tile-grid">
-            <a href="/founding-members"><span>Membership</span><strong>Founding members</strong></a>
-            <a href="/team-building"><span>Corporate</span><strong>Team building</strong></a>
-            <a href="/junior-golf"><span>Family</span><strong>Junior golf</strong></a>
-            <a href="/winter-golf"><span>Seasonal</span><strong>Winter golf</strong></a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section visitor-confidence-section">
-        <div className="container visitor-confidence-grid">
-          <div>
-            <p className="eyebrow">Visitor confidence</p>
-            <h2>Clear practical information before people visit.</h2>
-            <p>
-              The site now includes operational and trust pages covering visit planning,
-              house rules, accessibility, careers, partnerships and press. This makes
-              the website feel more complete and ready for real customers.
-            </p>
-            <div className="hero-actions">
-              <a href="/plan-your-visit" className="button button-primary">Plan Your Visit</a>
-              <a href="/house-rules" className="button button-secondary">House Rules</a>
-            </div>
-          </div>
-
-          <div className="visitor-confidence-links">
-            <a href="/plan-your-visit"><span>Visit</span><strong>How to plan your first visit</strong></a>
-            <a href="/house-rules"><span>Rules</span><strong>Venue rules and guest expectations</strong></a>
-            <a href="/accessibility"><span>Access</span><strong>Accessibility and inclusion information</strong></a>
-            <a href="/careers"><span>Team</span><strong>Careers and future recruitment</strong></a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section faq-preview-section">
-        <div className="container faq-preview-grid">
-          <div>
-            <p className="eyebrow">Quick answers</p>
-            <h2>Before you book or enquire.</h2>
-          </div>
-
-          <div className="faq-preview-list">
-            <details open>
-              <summary>Can non-golfers visit Tee Time Social?</summary>
-              <p>Yes. The venue is designed for social groups, beginners, live sport, food, drink and events as well as golfers.</p>
-            </details>
-            <details>
-              <summary>How many people can play in one bay?</summary>
-              <p>Each simulator booking supports up to six players per bay.</p>
-            </details>
-            <details>
-              <summary>Are under 18s allowed?</summary>
-              <p>Yes, but anyone under 18 must be accompanied by an adult.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section id="private-hire" className="section private-hire-section">
-        <div className="container register-grid">
-          <div>
-            <p className="eyebrow">Private hire</p>
-            <h2>Plan your event at Tee Time Social.</h2>
-            <p>Enquire for birthdays, corporate nights, team socials, golf society events, live sport bookings and private venue hire.</p>
-          </div>
-
-          <form className="lead-form" onSubmit={submitPrivateHire}>
-            <label>Full name<input name="full_name" value={hireForm.full_name} onChange={updateHireForm} required /></label>
-            <label>Email address<input name="email" type="email" value={hireForm.email} onChange={updateHireForm} required /></label>
-            <label>Phone number<input name="phone" value={hireForm.phone} onChange={updateHireForm} /></label>
-            <label>
-              Event type
-              <select name="event_type" value={hireForm.event_type} onChange={updateHireForm}>
-                <option value="">Select event type</option>
-                <option>Birthday / Celebration</option>
-                <option>Corporate Event</option>
-                <option>Golf Society</option>
-                <option>Live Sport Booking</option>
-                <option>Bottomless Brunch</option>
-                <option>Other</option>
-              </select>
-            </label>
-            <label>Preferred date<input name="preferred_date" value={hireForm.preferred_date} onChange={updateHireForm} placeholder="TBC / preferred date" /></label>
-            <label>Approx. guest count<input name="guest_count" value={hireForm.guest_count} onChange={updateHireForm} /></label>
-            <label>Tell us more<textarea name="message" value={hireForm.message} onChange={updateHireForm} rows={4} /></label>
-            <button className="button button-primary form-button" type="submit">Send Private Hire Enquiry</button>
-            {hireStatus && <p className="form-success">{hireStatus}</p>}
-          </form>
-        </div>
-      </section>
-
-      <section className="section launch-pass-section">
-        <div className="container launch-pass-card">
-          <div>
-            <p className="eyebrow">Launch pass</p>
-            <h2>One form. All launch updates.</h2>
-            <p>
-              Visitors can now understand exactly why they should register: early booking
-              access, membership releases, event package announcements, coaching updates
-              and launch offers.
-            </p>
-          </div>
-          <div className="launch-pass-benefits">
-            <span>Early booking access</span>
-            <span>Membership release</span>
-            <span>Event packages</span>
-            <span>Coaching updates</span>
-            <span>Giveaways</span>
-            <span>Launch offers</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="register" className="section register-section">
-        <div className="container register-grid">
-          <div>
-            <p className="eyebrow">Register your interest</p>
-            <h2>Join the Tee Time Social launch list.</h2>
-            <p>Register now for opening updates, early booking access, memberships, events and launch offers.</p>
-            <div className="benefits">
-              <span>Early booking access</span>
-              <span>Launch offers</span>
-              <span>Giveaway entries</span>
-              <span>Membership updates</span>
-            </div>
-          </div>
-
-          <form className="lead-form" onSubmit={submitLead}>
-            <label>Full name<input value={fullName} onChange={(event) => setFullName(event.target.value)} required /></label>
-            <label>Email address<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required /></label>
-            <label>Mobile number<input value={phone} onChange={(event) => setPhone(event.target.value)} /></label>
-
-            <div className="interest-panel">
-              <p>I&apos;m interested in {selectedCount > 0 ? `(${selectedCount})` : ""}</p>
-              <div className="interest-grid">
-                {interests.map((interest) => (
-                  <button
-                    key={interest}
-                    type="button"
-                    className={selectedInterests.includes(interest) ? "interest-choice active" : "interest-choice"}
-                    onClick={() => toggleInterest(interest)}
-                    aria-pressed={selectedInterests.includes(interest)}
-                  >
-                    <span>{interest}</span>
-                  </button>
-                ))}
+              <div className="coming-soon-points" aria-label="Venue highlights">
+                <div>
+                  <strong>Golf simulator hire</strong>
+                  <span>Book bays with friends, family or colleagues.</span>
+                </div>
+                <div>
+                  <strong>Live sport</strong>
+                  <span>Watch the biggest fixtures in a relaxed bar setting.</span>
+                </div>
+                <div>
+                  <strong>Food & drink</strong>
+                  <span>Casual drinks, bar food and social nights.</span>
+                </div>
               </div>
             </div>
 
-            <label>Anything else?<textarea value={message} onChange={(event) => setMessage(event.target.value)} rows={4} /></label>
-            <button className="button button-primary form-button" type="submit">Register Interest</button>
-            {leadStatus && <p className="form-success">{leadStatus}</p>}
-          </form>
+            <aside className="coming-soon-card" id="register-interest">
+              <div className="coming-soon-card-header">
+                <p>Register your interest</p>
+                <h2>Be first to hear when bookings open.</h2>
+              </div>
+
+              <form onSubmit={submitLead} className="coming-soon-form">
+                <label>
+                  Full name
+                  <input
+                    required
+                    value={fullName}
+                    onChange={(event) => setFullName(event.target.value)}
+                    placeholder="Your name"
+                  />
+                </label>
+
+                <label>
+                  Email address
+                  <input
+                    required
+                    type="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    placeholder="you@example.com"
+                  />
+                </label>
+
+                <label>
+                  Phone number
+                  <input
+                    value={phone}
+                    onChange={(event) => setPhone(event.target.value)}
+                    placeholder="Optional"
+                  />
+                </label>
+
+                <div className="coming-soon-interest-panel">
+                  <p>What are you interested in? <span>{selectedCount} selected</span></p>
+                  <div className="coming-soon-interest-grid">
+                    {interests.map((interest) => (
+                      <button
+                        key={interest}
+                        type="button"
+                        className={`coming-soon-interest ${selectedInterests.includes(interest) ? "active" : ""}`}
+                        onClick={() => toggleInterest(interest)}
+                      >
+                        {interest}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <label>
+                  Message
+                  <textarea
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
+                    placeholder="Tell us if you are interested in simulator hire, live sport, parties, group bookings or anything else."
+                  />
+                </label>
+
+                <button type="submit" className="coming-soon-submit">
+                  Register interest
+                </button>
+
+                {leadStatus && <p className="coming-soon-status">{leadStatus}</p>}
+              </form>
+            </aside>
+          </div>
+
+          <footer className="coming-soon-footer">
+            <span>Tee Time Social, Regent St, Barnsley S70 2HJ</span>
+            <a href="/tts-admin">Admin</a>
+          </footer>
         </div>
       </section>
-
-      <LocationAndFooter />
     </main>
   );
 }
-
 function BookSimulatorPage() {
   const [form, setForm] = useState<BookingForm>({
     full_name: "",
