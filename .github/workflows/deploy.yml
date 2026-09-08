@@ -21,7 +21,13 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Check for committed secrets
+        run: npm run check:secrets
+
+      - name: Run authentication regression tests
+        run: npm test
 
       - name: Build website
         run: npm run build

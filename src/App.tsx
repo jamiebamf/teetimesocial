@@ -1,13 +1,32 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { createClient } from "@supabase/supabase-js";
+import {
+  loadOccupiedSlots,
+  type AvailabilityClient,
+  type OccupiedSlot
+} from "./lib/bookingAvailability";
+import {
+  AdminAuthorizationController,
+  authorizeAdminSession,
+  checkAdminSession,
+  signInAdmin,
+  type AdminAuthClient,
+  type AdminAuthResult
+} from "./lib/adminAuth";
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
-const ADMIN_PASSWORD = "TTSAdmin2026!";
+const availabilityClient: AvailabilityClient = {
+  rpc: async (name, params) => {
+    const { data, error } = await supabase.rpc(name, params);
+    return { data, error: error ? { message: error.message } : null };
+  }
+};
+
 const DEPOSIT_PER_PLAYER = 10;
 const MAX_PLAYERS = 6;
 
@@ -336,11 +355,11 @@ function addMinutesToTime(time: string, minutes: number) {
   return `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
 }
 
-function isSlotUnavailable(slot: string, duration: number, bookings: Booking[]) {
+function isSlotUnavailable(slot: string, duration: number, bookings: Array<Booking | OccupiedSlot>) {
   const requestedEnd = addMinutesToTime(slot, duration);
 
   return bookings.some((booking) => {
-    const bookingStatus = booking.booking_status ?? "pending";
+    const bookingStatus = "booking_status" in booking ? booking.booking_status ?? "pending" : "pending";
 
     if (bookingStatus === "cancelled") {
       return false;
@@ -456,6 +475,59 @@ function App() {
     </PageShell>
   );
 }
+
+// These pages are intentionally dormant while the public site remains in its
+// launch holding state. Type-only references preserve them without changing
+// routing, weakening unused-code checks, or adding runtime bundle code.
+export type DormantPageComponents = {
+  BookSimulatorPage: typeof BookSimulatorPage;
+  CoachingPage: typeof CoachingPage;
+  EventsPage: typeof EventsPage;
+  MembershipsPage: typeof MembershipsPage;
+  PrivacyPage: typeof PrivacyPage;
+  TermsPage: typeof TermsPage;
+  CookiesPage: typeof CookiesPage;
+  ContactPage: typeof ContactPage;
+  VenuePage: typeof VenuePage;
+  FoodDrinkPage: typeof FoodDrinkPage;
+  LaunchPage: typeof LaunchPage;
+  PricingPage: typeof PricingPage;
+  LeaguesPage: typeof LeaguesPage;
+  CorporatePage: typeof CorporatePage;
+  FamilyJuniorsPage: typeof FamilyJuniorsPage;
+  PartiesPage: typeof PartiesPage;
+  GolfSocietiesPage: typeof GolfSocietiesPage;
+  DateNightPage: typeof DateNightPage;
+  ChristmasPartiesPage: typeof ChristmasPartiesPage;
+  GuidesPage: typeof GuidesPage;
+  WhatIsGolfzonPage: typeof WhatIsGolfzonPage;
+  GiftVouchersPage: typeof GiftVouchersPage;
+  LiveSportPage: typeof LiveSportPage;
+  VenueHireGuidePage: typeof VenueHireGuidePage;
+  BarnsleyIndoorGolfPage: typeof BarnsleyIndoorGolfPage;
+  PlanYourVisitPage: typeof PlanYourVisitPage;
+  HouseRulesPage: typeof HouseRulesPage;
+  AccessibilityPage: typeof AccessibilityPage;
+  CareersPage: typeof CareersPage;
+  PartnershipsPage: typeof PartnershipsPage;
+  PressPage: typeof PressPage;
+  PackagesPage: typeof PackagesPage;
+  FoundingMembersPage: typeof FoundingMembersPage;
+  LaunchOffersPage: typeof LaunchOffersPage;
+  TeamBuildingPage: typeof TeamBuildingPage;
+  JuniorGolfPage: typeof JuniorGolfPage;
+  WinterGolfPage: typeof WinterGolfPage;
+  HowBookingWorksPage: typeof HowBookingWorksPage;
+  SimulatorGuidePage: typeof SimulatorGuidePage;
+  ClubHirePage: typeof ClubHirePage;
+  GroupBookingsPage: typeof GroupBookingsPage;
+  FirstTimeGolfersPage: typeof FirstTimeGolfersPage;
+  BookingFAQPage: typeof BookingFAQPage;
+  FAQPage: typeof FAQPage;
+  SiteMapPage: typeof SiteMapPage;
+  NotFoundPage: typeof NotFoundPage;
+};
+
 function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
@@ -735,7 +807,7 @@ function BookSimulatorPage() {
     notes: ""
   });
 
-  const [existingBookings, setExistingBookings] = useState<Booking[]>([]);
+  const [existingBookings, setExistingBookings] = useState<OccupiedSlot[]>([]);
   const [availabilityStatus, setAvailabilityStatus] = useState("Loading availability...");
   const [submitStatus, setSubmitStatus] = useState("");
   const [confirmedBooking, setConfirmedBooking] = useState<Booking | null>(null);
@@ -766,20 +838,18 @@ function BookSimulatorPage() {
   const fetchAvailability = async () => {
     setAvailabilityStatus("Loading availability...");
 
-    const { data, error } = await supabase
-      .from("simulator_bookings")
-      .select("id, booking_reference, full_name, email, phone, booking_date, booking_time, booking_end_time, duration, group_size, simulator, club_hire, handedness, deposit_amount, booking_status, payment_status, notes, created_at")
-      .eq("booking_date", form.booking_date)
-      .eq("simulator", form.simulator)
-      .in("booking_status", ["pending", "confirmed"])
-      .order("booking_time", { ascending: true });
+    const { data, error } = await loadOccupiedSlots(
+      availabilityClient,
+      form.booking_date,
+      form.simulator
+    );
 
     if (error) {
       setAvailabilityStatus("Unable to load availability.");
       return;
     }
 
-    setExistingBookings((data ?? []) as Booking[]);
+    setExistingBookings(data);
     setAvailabilityStatus("Availability loaded.");
   };
 
@@ -803,20 +873,19 @@ function BookSimulatorPage() {
     setSubmitStatus("Checking availability...");
     setConfirmedBooking(null);
 
-    const { data: latestBookings, error: latestError } = await supabase
-      .from("simulator_bookings")
-      .select("id, booking_reference, full_name, email, phone, booking_date, booking_time, booking_end_time, duration, group_size, simulator, club_hire, handedness, deposit_amount, booking_status, payment_status, notes, created_at")
-      .eq("booking_date", form.booking_date)
-      .eq("simulator", form.simulator)
-      .in("booking_status", ["pending", "confirmed"]);
+    const { data: latestBookings, error: latestError } = await loadOccupiedSlots(
+      availabilityClient,
+      form.booking_date,
+      form.simulator
+    );
 
     if (latestError) {
       setSubmitStatus("Unable to check availability. Please try again.");
       return;
     }
 
-    if (isSlotUnavailable(form.booking_time, form.duration, (latestBookings ?? []) as Booking[])) {
-      setExistingBookings((latestBookings ?? []) as Booking[]);
+    if (isSlotUnavailable(form.booking_time, form.duration, latestBookings)) {
+      setExistingBookings(latestBookings);
       setSubmitStatus("That slot has just been taken. Please choose another time.");
       return;
     }
@@ -4282,26 +4351,126 @@ function NotFoundPage() {
 }
 
 
-function ProtectedAdminPage() {
-  const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem("tts-admin-auth") === "true");
+const adminAuthClient: AdminAuthClient = {
+  auth: {
+    getSession: async () => {
+      const { data, error } = await supabase.auth.getSession();
+      return {
+        data: { session: data.session ? { user: { id: data.session.user.id } } : null },
+        error: error ? { message: error.message } : null
+      };
+    },
+    signInWithPassword: async (credentials) => {
+      const { data, error } = await supabase.auth.signInWithPassword(credentials);
+      return {
+        data: { session: data.session ? { user: { id: data.session.user.id } } : null },
+        error: error ? { message: error.message } : null
+      };
+    },
+    signOut: async () => {
+      const { error } = await supabase.auth.signOut();
+      return { error: error ? { message: error.message } : null };
+    }
+  },
+  rpc: async () => {
+    const { data, error } = await supabase.rpc("is_tts_admin");
+    return { data: data === true, error: error ? { message: error.message } : null };
+  }
+};
 
-  const login = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      sessionStorage.setItem("tts-admin-auth", "true");
-      setLoggedIn(true);
+function ProtectedAdminPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [authState, setAuthState] = useState<"checking" | "signed-out" | "authorised">("checking");
+  const [authMessage, setAuthMessage] = useState("Checking admin access...");
+  const authorizationController = useRef(new AdminAuthorizationController()).current;
+
+  const applyResult = (result: AdminAuthResult, endedMessage = "") => {
+    if (result.status === "authorized") {
+      setAuthState("authorised");
+      setAuthMessage("");
       return;
     }
-    alert("Incorrect password");
+    setAuthState("signed-out");
+    setAuthMessage(
+      result.status === "expired"
+        ? "Your session expired. Sign in again."
+        : result.status === "error"
+          ? "Unable to verify admin access. Sign in again."
+          : endedMessage
+    );
   };
 
-  const logout = () => {
-    sessionStorage.removeItem("tts-admin-auth");
-    setLoggedIn(false);
+  useEffect(() => {
+    let active = true;
+
+    void authorizationController.run(
+      () => checkAdminSession(adminAuthClient),
+      null,
+      (result) => {
+        if (active) applyResult(result);
+      }
+    );
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
+      if (!active) return;
+      authorizationController.invalidate();
+      setAuthState("checking");
+      setAuthMessage("Checking admin access...");
+      const session = currentSession ? { user: { id: currentSession.user.id } } : null;
+      queueMicrotask(() => {
+        if (!active) return;
+        void authorizationController.run(
+          () => session
+            ? authorizeAdminSession(adminAuthClient, session)
+            : Promise.resolve({ status: "unauthenticated" }),
+          session?.user.id ?? null,
+          (result) => {
+            if (active) applyResult(result, "Your session ended. Sign in again.");
+          }
+        );
+      });
+    });
+
+    return () => {
+      active = false;
+      authorizationController.invalidate();
+      subscription.unsubscribe();
+    };
+  }, [authorizationController]);
+
+  const login = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setAuthState("checking");
+    setAuthMessage("Signing in...");
+
+    await authorizationController.run(
+      () => signInAdmin(adminAuthClient, email.trim(), password),
+      null,
+      (result) => applyResult(
+        result,
+        result.status === "forbidden"
+          ? "This account is not authorised for Tee Time Social admin."
+          : "Unable to sign in with those details."
+      )
+    );
+    setPassword("");
   };
 
-  if (!loggedIn) {
+  const logout = async () => {
+    setAuthState("checking");
+    setAuthMessage("Signing out...");
+    await authorizationController.run(
+      async () => {
+        await adminAuthClient.auth.signOut();
+        return { status: "unauthenticated" };
+      },
+      null,
+      (result) => applyResult(result, "Signed out.")
+    );
+  };
+
+  if (authState !== "authorised") {
     return (
       <main>
         <Navigation />
@@ -4309,10 +4478,15 @@ function ProtectedAdminPage() {
           <div className="container admin-login-card">
             <p className="eyebrow">Tee Time Social admin</p>
             <h1>Admin login</h1>
+            <p>Use your authorised Tee Time Social account.</p>
             <form className="lead-form" onSubmit={login}>
-              <label>Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required /></label>
-              <button className="button button-primary form-button" type="submit">Login</button>
+              <label>Email<input type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} required /></label>
+              <label>Password<input type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required /></label>
+              <button className="button button-primary form-button" type="submit" disabled={authState === "checking"}>
+                {authState === "checking" ? "Checking..." : "Sign in"}
+              </button>
             </form>
+            {authMessage && <p className="admin-message" role="status">{authMessage}</p>}
           </div>
         </section>
       </main>
